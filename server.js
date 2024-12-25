@@ -14,7 +14,7 @@ import studentRoutes from "./app/student/student.routes.js";
 import teacherRoutes from "./app/teacher/teacher.routes.js";
 import subjectRoutes from "./app/subject/subject.routes.js";
 import dayScheduleRoutes from "./app/daySchedule/daySchedule.routes.js";
-import groupScheduleRoutes from "./app/groupSchedule/groupSchedule.routes.js";
+// import groupScheduleRoutes from "./app/groupSchedule/groupSchedule.routes.js";
 
 import cors from "cors";
 
@@ -42,7 +42,7 @@ async function main() {
   app.use("/api/auth", authRoutes);
   app.use("/api/users", userRoutes);
   app.use("/api/day-schedules", dayScheduleRoutes);
-  app.use("/api/group-schedules", groupScheduleRoutes);
+  // app.use("/api/group-schedules", groupScheduleRoutes);
 
   app.use(notFound);
   app.use(errorHandler);

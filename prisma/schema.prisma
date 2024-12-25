@@ -42,35 +42,35 @@ model Teacher {
   password String
 }
 
-model GroupSchedule {
-  id        String        @id @default(auto()) @map("_id") @db.ObjectId
-  group     String
-  monday    DaySchedule[] @relation("mondayRelation")
-  tuesday   DaySchedule[] @relation("tuesdayRelation")
-  wednesday DaySchedule[] @relation("wednesdayRelation")
-  thursday  DaySchedule[] @relation("thursdayRelation")
-  friday    DaySchedule[] @relation("fridayRelation")
-  saturday  DaySchedule[] @relation("saturdayRelation")
-  sunday    DaySchedule[] @relation("sundayRelation")
-}
+// model GroupSchedule {
+//   id        String        @id @default(auto()) @map("_id") @db.ObjectId
+//   group     String
+//   monday    DaySchedule[] @relation("mondayRelation")
+//   tuesday   DaySchedule[] @relation("tuesdayRelation")
+//   wednesday DaySchedule[] @relation("wednesdayRelation")
+//   thursday  DaySchedule[] @relation("thursdayRelation")
+//   friday    DaySchedule[] @relation("fridayRelation")
+//   saturday  DaySchedule[] @relation("saturdayRelation")
+//   sunday    DaySchedule[] @relation("sundayRelation")
+// }
 
 model DaySchedule {
-  id                  String         @id @default(auto()) @map("_id") @db.ObjectId
-  pairNumber          Int
-  type                String
-  fields              Json
-  mondayScheduleId    String?        @db.ObjectId
-  mondayRelation      GroupSchedule? @relation("mondayRelation", fields: [mondayScheduleId], references: [id])
-  tuesdayScheduleId   String?        @db.ObjectId
-  tuesdayRelation     GroupSchedule? @relation("tuesdayRelation", fields: [tuesdayScheduleId], references: [id])
-  wednesdayScheduleId String?        @db.ObjectId
-  wednesdayRelation   GroupSchedule? @relation("wednesdayRelation", fields: [wednesdayScheduleId], references: [id])
-  thursdayScheduleId  String?        @db.ObjectId
-  thursdayRelation    GroupSchedule? @relation("thursdayRelation", fields: [thursdayScheduleId], references: [id])
-  fridayScheduleId    String?        @db.ObjectId
-  fridayRelation      GroupSchedule? @relation("fridayRelation", fields: [fridayScheduleId], references: [id])
-  saturdayScheduleId  String?        @db.ObjectId
-  saturdayRelation    GroupSchedule? @relation("saturdayRelation", fields: [saturdayScheduleId], references: [id])
-  sundayScheduleId    String?        @db.ObjectId
-  sundayRelation      GroupSchedule? @relation("sundayRelation", fields: [sundayScheduleId], references: [id])
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  group     String
+  dayOfWeek String
+  fields    Json
+  // mondayScheduleId    String?        @db.ObjectId
+  // mondayRelation      GroupSchedule? @relation("mondayRelation", fields: [mondayScheduleId], references: [id])
+  // tuesdayScheduleId   String?        @db.ObjectId
+  // tuesdayRelation     GroupSchedule? @relation("tuesdayRelation", fields: [tuesdayScheduleId], references: [id])
+  // wednesdayScheduleId String?        @db.ObjectId
+  // wednesdayRelation   GroupSchedule? @relation("wednesdayRelation", fields: [wednesdayScheduleId], references: [id])
+  // thursdayScheduleId  String?        @db.ObjectId
+  // thursdayRelation    GroupSchedule? @relation("thursdayRelation", fields: [thursdayScheduleId], references: [id])
+  // fridayScheduleId    String?        @db.ObjectId
+  // fridayRelation      GroupSchedule? @relation("fridayRelation", fields: [fridayScheduleId], references: [id])
+  // saturdayScheduleId  String?        @db.ObjectId
+  // saturdayRelation    GroupSchedule? @relation("saturdayRelation", fields: [saturdayScheduleId], references: [id])
+  // sundayScheduleId    String?        @db.ObjectId
+  // sundayRelation      GroupSchedule? @relation("sundayRelation", fields: [sundayScheduleId], references: [id])
 }

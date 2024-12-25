@@ -25,22 +25,22 @@ export const getDaySchedule = asyncHandler(async (req, res) => {
 });
 
 export const createDaySchedule = asyncHandler(async (req, res) => {
-  const { pairNumber, type, fields } = req.body;
+  const { group, dayOfWeek, fields } = req.body;
 
   const daySchedule = await prisma.daySchedule.create({
-    data: { pairNumber, type, fields },
+    data: { group, dayOfWeek, fields },
   });
 
   res.status(201).json(daySchedule);
 });
 
 export const updateDaySchedule = asyncHandler(async (req, res) => {
-  const { pairNumber, type, fields } = req.body;
+  const { group, dayOfWeek, fields } = req.body;
 
   try {
     const daySchedule = await prisma.daySchedule.update({
       where: { id: req.params.id },
-      data: { pairNumber, type, fields },
+      data: { group, dayOfWeek, fields },
     });
 
     res.json(daySchedule);
