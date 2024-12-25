@@ -12,8 +12,9 @@ import roomRoutes from "./app/room/room.routes.js";
 import groupRoutes from "./app/group/group.routes.js";
 import studentRoutes from "./app/student/student.routes.js";
 import teacherRoutes from "./app/teacher/teacher.routes.js";
-import groupScheduleRoutes from "./app/groupSchedule/groupSchedule.routes.js";
+import subjectRoutes from "./app/subject/subject.routes.js";
 import dayScheduleRoutes from "./app/daySchedule/daySchedule.routes.js";
+import groupScheduleRoutes from "./app/groupSchedule/groupSchedule.routes.js";
 
 import cors from "cors";
 
@@ -38,8 +39,9 @@ async function main() {
   app.use("/api/groups", groupRoutes);
   app.use("/api/students", studentRoutes);
   app.use("/api/teachers", teacherRoutes);
-  app.use("/api/group-schedules", groupScheduleRoutes);
+  app.use("/api/subjects", subjectRoutes);
   app.use("/api/day-schedules", dayScheduleRoutes);
+  app.use("/api/group-schedules", groupScheduleRoutes);
 
   app.use(notFound);
   app.use(errorHandler);
