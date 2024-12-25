@@ -33,13 +33,14 @@ async function main() {
 
   app.use("/uploads", express.static(path.join(__dirname, "/uploads/")));
 
+  app.use("/api/rooms", roomRoutes);
+  app.use("/api/subjects", subjectRoutes);
+  app.use("/api/groups", groupRoutes);
+  app.use("/api/teachers", teacherRoutes);
+  app.use("/api/students", studentRoutes);
+
   app.use("/api/auth", authRoutes);
   app.use("/api/users", userRoutes);
-  app.use("/api/rooms", roomRoutes);
-  app.use("/api/groups", groupRoutes);
-  app.use("/api/students", studentRoutes);
-  app.use("/api/teachers", teacherRoutes);
-  app.use("/api/subjects", subjectRoutes);
   app.use("/api/day-schedules", dayScheduleRoutes);
   app.use("/api/group-schedules", groupScheduleRoutes);
 
