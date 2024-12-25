@@ -13,7 +13,7 @@ export const getTeachers = asyncHandler(async (req, res) => {
 
 export const getTeacher = asyncHandler(async (req, res) => {
   const teacher = await prisma.teacher.findUnique({
-    where: { id: parseInt(req.params.id) },
+    where: { id: req.params.id },
   });
 
   if (!teacher) {
@@ -44,7 +44,7 @@ export const updateTeacher = asyncHandler(async (req, res) => {
 
   try {
     const teacher = await prisma.teacher.update({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
       data: { fullName, position, login, password },
     });
 
@@ -58,7 +58,7 @@ export const updateTeacher = asyncHandler(async (req, res) => {
 export const deleteTeacher = asyncHandler(async (req, res) => {
   try {
     await prisma.teacher.delete({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
     });
 
     res.json({ message: "Teacher deleted!" });

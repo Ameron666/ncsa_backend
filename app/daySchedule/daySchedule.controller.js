@@ -13,7 +13,7 @@ export const getDaySchedules = asyncHandler(async (req, res) => {
 
 export const getDaySchedule = asyncHandler(async (req, res) => {
   const daySchedule = await prisma.daySchedule.findUnique({
-    where: { id: parseInt(req.params.id) },
+    where: { id: req.params.id },
   });
 
   if (!daySchedule) {
@@ -39,7 +39,7 @@ export const updateDaySchedule = asyncHandler(async (req, res) => {
 
   try {
     const daySchedule = await prisma.daySchedule.update({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
       data: { pairNumber, type, fields },
     });
 
@@ -53,7 +53,7 @@ export const updateDaySchedule = asyncHandler(async (req, res) => {
 export const deleteDaySchedule = asyncHandler(async (req, res) => {
   try {
     await prisma.daySchedule.delete({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
     });
 
     res.json({ message: "DaySchedule deleted!" });

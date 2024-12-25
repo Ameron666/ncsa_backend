@@ -12,7 +12,7 @@ export const getRooms = asyncHandler(async (req, res) => {
 
 export const getRoom = asyncHandler(async (req, res) => {
   const room = await prisma.room.findUnique({
-    where: { id: parseInt(req.params.id) },
+    where: { id: req.params.id },
   });
 
   if (!room) {
@@ -49,7 +49,7 @@ export const updateRoom = asyncHandler(async (req, res) => {
 
   try {
     const room = await prisma.room.update({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
       data: { fullName, floor },
     });
 
@@ -63,7 +63,7 @@ export const updateRoom = asyncHandler(async (req, res) => {
 export const deleteRoom = asyncHandler(async (req, res) => {
   try {
     await prisma.room.delete({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
     });
 
     res.json({ message: "Room deleted!" });

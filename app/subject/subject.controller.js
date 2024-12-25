@@ -18,7 +18,7 @@ export const getSubjects = asyncHandler(async (req, res) => {
 // @access  Private
 export const getSubject = asyncHandler(async (req, res) => {
   const subject = await prisma.subject.findUnique({
-    where: { id: parseInt(req.params.id) },
+    where: { id: req.params.id },
   });
 
   if (!subject) {
@@ -55,7 +55,7 @@ export const updateSubject = asyncHandler(async (req, res) => {
 
   try {
     const subject = await prisma.subject.update({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
       data: { fullName },
     });
 
@@ -72,7 +72,7 @@ export const updateSubject = asyncHandler(async (req, res) => {
 export const deleteSubject = asyncHandler(async (req, res) => {
   try {
     await prisma.subject.delete({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
     });
 
     res.json({ message: "Subject deleted!" });

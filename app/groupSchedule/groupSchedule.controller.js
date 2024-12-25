@@ -13,7 +13,7 @@ export const getGroupSchedules = asyncHandler(async (req, res) => {
 
 export const getGroupSchedule = asyncHandler(async (req, res) => {
   const groupSchedule = await prisma.groupSchedule.findUnique({
-    where: { id: parseInt(req.params.id) },
+    where: { id: req.params.id },
   });
 
   if (!groupSchedule) {
@@ -66,7 +66,7 @@ export const updateGroupSchedule = asyncHandler(async (req, res) => {
 
   try {
     const groupSchedule = await prisma.groupSchedule.update({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
       data: {
         group,
         monday,
@@ -89,7 +89,7 @@ export const updateGroupSchedule = asyncHandler(async (req, res) => {
 export const deleteGroupSchedule = asyncHandler(async (req, res) => {
   try {
     await prisma.groupSchedule.delete({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
     });
 
     res.json({ message: "GroupSchedule deleted!" });

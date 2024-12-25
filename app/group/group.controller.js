@@ -12,7 +12,7 @@ export const getGroups = asyncHandler(async (req, res) => {
 
 export const getGroup = asyncHandler(async (req, res) => {
   const group = await prisma.group.findUnique({
-    where: { id: parseInt(req.params.id) },
+    where: { id: req.params.id },
   });
 
   if (!group) {
@@ -43,7 +43,7 @@ export const updateGroup = asyncHandler(async (req, res) => {
 
   try {
     const group = await prisma.group.update({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
       data: { fullName, course },
     });
 
@@ -57,7 +57,7 @@ export const updateGroup = asyncHandler(async (req, res) => {
 export const deleteGroup = asyncHandler(async (req, res) => {
   try {
     await prisma.group.delete({
-      where: { id: parseInt(req.params.id) },
+      where: { id: req.params.id },
     });
 
     res.json({ message: "Group deleted!" });
