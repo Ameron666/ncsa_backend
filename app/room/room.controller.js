@@ -31,12 +31,18 @@ export const createRoom = asyncHandler(async (req, res) => {
     throw new Error("Please add all required fields!");
   }
 
-  const room = await prisma.room.create({
-    data: { fullName, floor },
-  });
-
-  res.status(201).json(room);
+  try {
+    const room = await prisma.room.create({
+      data: { fullName, floor },
+    });
+    res.status(201).json(room);
+  } catch (error) {
+    console.error("Error creating room:", error);
+    res.status(500);
+    throw new Error("Failed to create room!");
+  }
 });
+
 
 export const updateRoom = asyncHandler(async (req, res) => {
   const { fullName, floor } = req.body;
