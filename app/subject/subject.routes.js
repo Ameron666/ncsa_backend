@@ -1,5 +1,5 @@
-import express from 'express';
-import { protect } from '../middleware/auth.middleware.js';
+import express from "express"
+import { protect } from "../middleware/auth.middleware.js"
 
 import {
   createSubject,
@@ -7,16 +7,16 @@ import {
   getSubject,
   getSubjects,
   updateSubject
-} from './subject.controller.js';
+} from "./subject.controller.js"
 
-const router = express.Router();
+const router = express.Router()
 
-router.route('/').post(/*protect,*/ createSubject).get(/*protect,*/ getSubjects);
+router.route("/").post(/*protect,*/ createSubject).get(/*protect,*/ getSubjects)
 
 router
-  .route('/:id')
+  .route("/:id")
   .get(/*protect,*/ getSubject)
   .put(/*protect,*/ updateSubject)
-  .delete(/*protect,*/ deleteSubject);
+  .delete(/*protect,*/ deleteSubject)
 
-export default router;
+export default router

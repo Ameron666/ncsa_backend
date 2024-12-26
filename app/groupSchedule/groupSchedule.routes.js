@@ -1,26 +1,26 @@
-import express from "express";
+import express from "express"
 
-import { protect } from "../middleware/auth.middleware.js";
+import { protect } from "../middleware/auth.middleware.js"
 
 import {
   createGroupSchedule,
   deleteGroupSchedule,
   getGroupSchedule,
   getGroupSchedules,
-  updateGroupSchedule,
-} from "./groupSchedule.controller.js";
+  updateGroupSchedule
+} from "./groupSchedule.controller.js"
 
-const groupScheduleRouter = express.Router();
+const groupScheduleRouter = express.Router()
 
 groupScheduleRouter
   .route("/")
   .post(/*protect,*/ createGroupSchedule)
-  .get(/*protect,*/ getGroupSchedules);
+  .get(/*protect,*/ getGroupSchedules)
 
 groupScheduleRouter
   .route("/:id")
   .get(/*protect,*/ getGroupSchedule)
   .put(/*protect,*/ updateGroupSchedule)
-  .delete(/*protect,*/ deleteGroupSchedule);
+  .delete(/*protect,*/ deleteGroupSchedule)
 
-export default groupScheduleRouter;
+export default groupScheduleRouter
