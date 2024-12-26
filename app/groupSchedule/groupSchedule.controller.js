@@ -81,34 +81,43 @@ export const updateGroupSchedule = asyncHandler(async (req, res) => {
   } = req.body
 
   try {
-    const groupSchedule = await prisma.groupSchedule.upsert({
-      where: { id: id },
-      create: {
-        group: group || [],
-        monday: monday || [],
-        tuesday: tuesday || [],
-        wednesday: wednesday || [],
-        thursday: thursday || [],
-        friday: friday || [],
-        saturday: saturday || [],
-        sunday: sunday || []
-      },
-      update: {
-        group: group || undefined,
-        monday: monday || undefined,
-        tuesday: tuesday || undefined,
-        wednesday: wednesday || undefined,
-        thursday: thursday || undefined,
-        friday: friday || undefined,
-        saturday: saturday || undefined,
-        sunday: sunday || undefined
-      }
-    })
+    let groupSchedule
+
+    if (id) {
+      // Если передан ID, пытаемся обновить запись
+      groupSchedule = await prisma.groupSchedule.update({
+        where: { id },
+        data: {
+          group: group || undefined,
+          monday: monday || undefined,
+          tuesday: tuesday || undefined,
+          wednesday: wednesday || undefined,
+          thursday: thursday || undefined,
+          friday: friday || undefined,
+          saturday: saturday || undefined,
+          sunday: sunday || undefined
+        }
+      })
+    } else {
+      // Если ID не передан, создаём новую запись
+      groupSchedule = await prisma.groupSchedule.create({
+        data: {
+          group,
+          monday: monday || [],
+          tuesday: tuesday || [],
+          wednesday: wednesday || [],
+          thursday: thursday || [],
+          friday: friday || [],
+          saturday: saturday || [],
+          sunday: sunday || []
+        }
+      })
+    }
 
     res.json(groupSchedule)
   } catch (error) {
-    res.status(404)
-    throw new Error("GroupSchedule not found!")
+    res.status(500)
+    throw new Error(error.message || "Ошибка при обработке GroupSchedule.")
   }
 })
 

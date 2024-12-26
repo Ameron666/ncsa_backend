@@ -14,14 +14,14 @@ const groupScheduleRouter = express.Router()
 
 groupScheduleRouter
   .route("/")
-  .post(/*protect,*/ createGroupSchedule)
+  // .post(/*protect,*/ createGroupSchedule)
   .put(/*protect,*/ updateGroupSchedule)
   .get(/*protect,*/ getGroupSchedules)
 
 groupScheduleRouter
   .route("/:id")
   .get(/*protect,*/ getGroupSchedule)
-  .put(/*protect,*/ updateGroupSchedule)
+  // .put(/*protect,*/ updateGroupSchedule)
   .delete(/*protect,*/ deleteGroupSchedule)
 
 export default groupScheduleRouter
