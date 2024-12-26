@@ -69,6 +69,7 @@ export const createGroupSchedule = asyncHandler(async (req, res) => {
 // @access Private
 export const updateGroupSchedule = asyncHandler(async (req, res) => {
   const {
+    id,
     group,
     monday,
     tuesday,
@@ -81,7 +82,7 @@ export const updateGroupSchedule = asyncHandler(async (req, res) => {
 
   try {
     const groupSchedule = await prisma.groupSchedule.upsert({
-      where: { id: req.params.id || ""},
+      where: { id: id || ""},
       create: {
         group: group || [],
         monday: monday || [],
