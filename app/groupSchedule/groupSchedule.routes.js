@@ -15,6 +15,7 @@ const groupScheduleRouter = express.Router()
 groupScheduleRouter
   .route("/")
   .post(/*protect,*/ createGroupSchedule)
+  .put(/*protect,*/ updateGroupSchedule)
   .get(/*protect,*/ getGroupSchedules)
 
 groupScheduleRouter
