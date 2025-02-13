@@ -26,6 +26,7 @@ export const authUser = asyncHandler(async (req, res) => {
     foundUser = await prisma.student.findUnique({ where: { login } })
     role = "student"
   }
+  console.log(role, foundUser)
 
   if (!foundUser) {
     res.status(401)
@@ -33,17 +34,17 @@ export const authUser = asyncHandler(async (req, res) => {
   }
 
   // Проверка пароля (предполагается, что пароли хранятся в виде хэша)
-  const isValidPassword = await verify(foundUser.password, password)
-  if (!isValidPassword) {
-    res.status(401)
-    throw new Error("Неверный логин или пароль")
-  }
+  // const isValidPassword = await verify(foundUser.password, password)
+  // if (!isValidPassword) {
+  //   res.status(401)
+  //   throw new Error("Неверный логин или пароль")
+  // }
 
   // Генерация токена
-  const token = generateToken(foundUser.id)
+  // const token = generateToken(foundUser.id)
 
   // Возвращаем данные пользователя с указанием роли и токен
-  res.json({ user: { ...foundUser, role }, token })
+  res.json({ user: { ...foundUser, role } })
 })
 
 // @desc    Регистрация пользователя (только для модели user)
@@ -67,19 +68,19 @@ export const registerUser = asyncHandler(async (req, res) => {
   }
 
   // Хэшируем пароль
-  const hashedPassword = await hash(password)
+  // const hashedPassword = await hash(password)
 
   const user = await prisma.user.create({
     data: {
       login,
       email,
-      password: hashedPassword,
+      password,
       name
     },
     select: UserFields
   })
 
-  const token = generateToken(user.id)
+  // const token = generateToken(user.id)
 
-  res.json({ user, token })
+  res.json({ user })
 })
