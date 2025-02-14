@@ -12,21 +12,20 @@ export const authUser = asyncHandler(async (req, res) => {
   const { login, password } = req.body
 
   // Сначала ищем в таблице user
-  let foundUser = await prisma.user.findUnique({ where: { login } })
+  let foundUser = await prisma.user.findUnique({ where: { login, password } })
   let role = "user"
 
   // Если не найдено, ищем в таблице teacher
   if (!foundUser) {
-    foundUser = await prisma.teacher.findUnique({ where: { login } })
+    foundUser = await prisma.teacher.findUnique({ where: { login, password } })
     role = "teacher"
   }
 
   // Если не найдено, ищем в таблице student
   if (!foundUser) {
-    foundUser = await prisma.student.findUnique({ where: { login } })
+    foundUser = await prisma.student.findUnique({ where: { login, password } })
     role = "student"
   }
-  console.log(role, foundUser)
 
   if (!foundUser) {
     res.status(401)
